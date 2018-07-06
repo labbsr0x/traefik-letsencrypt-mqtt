@@ -4,7 +4,7 @@ Project showing how to setup a TLS MQTT broker Websocket Secure (WSS) solution u
 
 
 ## Setup without TLS/WSS
-To run this setup without TLS support you don't need the Let's Encrypt part. 
+To run this setup without TLS support you don't need the Let's Encrypt part. The "vanilla" traefik will do the trick for you. Check this: https://hub.docker.com/_/traefik/
 
 ### Running with Docker Standalone using `docker-compose.yml`
 
