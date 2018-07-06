@@ -1,4 +1,4 @@
-# Traefik, Let's Encrypt, VerneMQ, Mosquitto connection over WebSocket Secure
+# Traefik, Let's Encrypt, VerneMQ and Mosquitto providing WebSocket Secure
 
 Project showing how to setup a TLS MQTT broker Websocket Secure (WSS) solution using Traefik, Let's Encrypt, VerneMQ and Mosquitto.
 
