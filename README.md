@@ -1,4 +1,7 @@
-# Running using Docker Standalone using `docker-compose.yml`
+# MQTT over WSS
+Traefik with lets encrypt enabled proxing MQTT over WSS connections to VerneMQ and Mosquitto brokers
+
+## Running using Docker Standalone
 
 Just copy and paste the following contents to a **docker-compose.yml** file and type `docker-compose up` and open `http://localhost:8080` to see the traefik panel.
 
@@ -47,7 +50,7 @@ services:
       - traefik.enable=true
 ```
 
-# Running using Docker Swarm
+## Running using Docker Swarm
 
 ### Usage
 
