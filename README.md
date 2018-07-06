@@ -1,9 +1,4 @@
-# Traefik, Let's Encrypt, VerneMQ and Mosquitto providing MQTT over WebSocket Secure
-
-Project showing how to setup a TLS MQTT broker Websocket Secure (WSS) solution using Traefik, Let's Encrypt, VerneMQ and Mosquitto.
-
-
-## Running with Docker Standalone using `docker-compose.yml`
+# Running using Docker Standalone using `docker-compose.yml`
 
 Just copy and paste the following contents to a **docker-compose.yml** file and type `docker-compose up` and open `http://localhost:8080` to see the traefik panel.
 
@@ -52,7 +47,7 @@ services:
       - traefik.enable=true
 ```
 
-## Running with Docker Swarm
+# Running using Docker Swarm
 
 ### Usage
 
