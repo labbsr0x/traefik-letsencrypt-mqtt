@@ -1,0 +1,42 @@
+version: '3.5'
+
+services:
+
+  traefik:
+    image: tiagostutz/traefik-letsencrypt:1.6
+    network_mode: bridge
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - SWARM_MODE=false
+      - LETS_ENCRYPT_EMAIL=test@yourawesomedomain.com
+      - LETS_ENCRYPT_TEST_MODE=true
+    labels:
+      - traefik.enable=false
+
+  vernemq:
+    image: erlio/docker-vernemq
+    network_mode: bridge
+    environment:
+      - DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on
+      - DOCKER_VERNEMQ_LOG__CONSOLE__LEVEL=info
+    labels:
+      - traefik.backend=vernemq
+      - traefik.frontend.rule=Host:verne.mqtt.yourawesomedomain.com
+      - traefik.frontend.entryPoints=https
+      - traefik.port=8080
+      - traefik.enable=true
+
+  mosquitto:
+    image: flaviostutz/mosquitto
+    network_mode: bridge
+    labels:
+      - traefik.backend=mosquitto
+      - traefik.frontend.rule=Host:mosquitto.mqtt.yourawesomedomain.com
+      - traefik.frontend.entryPoints=https
+      - traefik.port=9001
+      - traefik.enable=true

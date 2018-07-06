@@ -1,0 +1,56 @@
+version: '3.5'
+
+services:
+
+  traefik:
+    image: tiagostutz/traefik-letsencrypt:1.6
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - SWARM_MODE=true
+      - LETS_ENCRYPT_EMAIL=test@yourawesomedomain.com
+      - LETS_ENCRYPT_TEST_MODE=false
+
+  vernemq:
+    image: erlio/docker-vernemq
+    ##
+    #    Bug: If ports are mapped the container (service) is attached to the ingress network and stops running
+    ##
+    # ports:
+    #   - 1884:1883
+    #   - 8081:8080
+    environment:
+      - DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on
+      - DOCKER_VERNEMQ_LOG__CONSOLE__LEVEL=info
+    deploy:
+      labels:
+        - traefik.backend=vernemq
+        - traefik.frontend.rule=Host:vernemq.yourawesomedomain.com
+        - traefik.frontend.entryPoints=https
+        - traefik.port=8080
+        - traefik.enable=true 
+        - traefik.docker.network=traefik-net
+
+
+  mosquitto:
+    image: flaviostutz/mosquitto
+    # ports:
+    #   - 1885:1883
+    #   - 9005:9001
+    deploy:
+      labels:
+        - traefik.backend=mosquitto
+        - traefik.frontend.rule=Host:mosquitto.yourawesomedomain.com
+        - traefik.frontend.entryPoints=https
+        - traefik.port=9001
+        - traefik.enable=true 
+        - traefik.docker.network=traefik-net
+
+networks:
+  default:
+    name: traefik-net    
+    external: true
