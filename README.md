@@ -89,11 +89,10 @@ services:
   vernemq:
     image: erlio/docker-vernemq
     ##
-    #    Bug: If ports are mapped the container (service) is attached to the ingress network and stops running
+    #  PORT MAPPING NOT ALLOWED
+    #  BUG: If ports are mapped the service will be attached to the ingress network 
+    #  and will have issues on the connection handshake
     ##
-    # ports:
-    #   - 1884:1883
-    #   - 8081:8080
     environment:
       - DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on
       - DOCKER_VERNEMQ_LOG__CONSOLE__LEVEL=info
