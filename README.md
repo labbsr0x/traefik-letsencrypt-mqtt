@@ -3,10 +3,7 @@
 Project showing how to setup a TLS MQTT broker Websocket Secure (WSS) solution using Traefik, Let's Encrypt, VerneMQ and Mosquitto.
 
 
-## Setup without TLS/WSS
-To run this setup without TLS support you don't need the Let's Encrypt part. The "vanilla" traefik will do the trick for you. Check this: https://hub.docker.com/_/traefik/
-
-### Running with Docker Standalone using `docker-compose.yml`
+## Running with Docker Standalone using `docker-compose.yml`
 
 Just copy and paste the following contents to a **docker-compose.yml** file and type `docker-compose up` and open `http://localhost:8080` to see the traefik panel.
 
@@ -55,7 +52,7 @@ services:
       - traefik.enable=true
 ```
 
-## Docker Swarm
+## Running with Docker Swarm
 
 ### Usage
 
@@ -152,3 +149,7 @@ docker_gwbridge
 `docker network inspect docker_gwbridge`
 
 `docker swarm init`
+
+
+## Setup without TLS/WSS
+To run this setup without TLS support you don't need the Let's Encrypt part. The "vanilla" traefik will do the trick for you. Check this: https://hub.docker.com/_/traefik/
