@@ -3,7 +3,7 @@ Traefik with lets encrypt enabled proxing MQTT over WSS connections to VerneMQ a
 
 ## Running using Docker Standalone
 
-Just copy and paste the following contents to a **docker-compose.yml** file and type `docker-compose up` and open `http://localhost:8080` to see the traefik panel.
+Just copy and paste the following contents to a **docker-compose.yml** file and type `docker-compose up`.
 
 ```
 version: '3.5'
