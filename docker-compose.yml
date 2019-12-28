@@ -24,6 +24,7 @@ services:
     environment:
       - DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on
       - DOCKER_VERNEMQ_LOG__CONSOLE__LEVEL=info
+      - DOCKER_VERNEMQ_ACCEPT_EULA=yes
     labels:
       - traefik.backend=vernemq
       - traefik.frontend.rule=Host:verne.mqtt.yourawesomedomain.com
